@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="41" height="28"
+     viewBox="0 0 41 28">
+    <defs>
+        <path id="t0vba" d="M759.26 900l-3.26 3.27L766.7 914 756 924.73l3.26 3.27 13.96-14z"/>
+        <path id="t0vbb" d="M771.1 900l-3.26 3.27 10.7 10.73-10.7 10.73 3.26 3.27 13.96-14z"/>
+        <path id="t0vbc" d="M783.04 900l-3.26 3.27 10.7 10.73-10.7 10.73 3.26 3.27L797 914z"/>
+    </defs>
+    <g>
+        <g transform="translate(-756 -900)">
+            <g opacity=".15">
+                <use xlink:href="#t0vba"/>
+            </g>
+            <g opacity=".5">
+                <use xlink:href="#t0vbb"/>
+            </g>
+            <g>
+                <use xlink:href="#t0vbc"/>
+            </g>
+        </g>
+    </g>
+</svg>
