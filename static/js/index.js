@@ -361,8 +361,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.Common = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-// import Header from './Header';
-
 
 __webpack_require__(5);
 
@@ -383,8 +381,6 @@ var _initPopups = __webpack_require__(15);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-// import CTabs from './c-tabs';
 
 /**
  * Website's common scripts (example).
@@ -409,14 +405,6 @@ var Common = exports.Common = function () {
 
   return Common;
 }();
-
-/** tabs init */
-// const $tabs = $('.c-tabs');
-// $tabs.each((index, el) => {
-//   const tab = new CTabs($(el));
-//   tab.init();
-// });
-
 
 $('[data-fancybox]').fancybox();
 
@@ -506,28 +494,19 @@ var LangList = function () {
     value: function _switch() {
       this.$langList.each(function () {
         var $this = $(this);
-        var $langSub = $this.find('.lang__list-items');
+        var $currentLink = $this.find('.lang__link');
+
+        $currentLink.on('click', function (e) {
+          e.preventDefault();
+        });
 
         $this.on('click', function (ev) {
-          var currentLink = ev.target.closest('.lang__link');
-
-          if (currentLink) {
-            ev.preventDefault();
-          }
 
           $(this).toggleClass('is-active');
-          $langSub.slideToggle({
-            duration: 300,
-            easing: 'swing'
-          });
         });
 
         _helpers.$document.on('click', function (e) {
           if ($(e.target).closest($this).length !== 0) {} else {
-            $langSub.slideUp({
-              duration: 300,
-              easing: 'swing'
-            });
             $this.removeClass('is-active');
           }
         });
@@ -5733,34 +5712,6 @@ function initSliders() {
     dotsClass: 'slider-dots'
   };
 
-  // const $learnSld = $('.js-learn-slider');
-  // $learnSld.slick($.extend({}, defaultOptions, {
-  //   slidesToShow: 3,
-  //   slidesToScroll: 1,
-  //   speed: 500,
-  //   responsive: [
-  //     {
-  //       breakpoint: 1023,
-  //       settings: {
-  //         slidesToShow: 2,
-  //         slidesToScroll: 2,
-  //         infinite: true,
-  //         dots: true
-  //       }
-  //     }, {
-  //       breakpoint: 767,
-  //       settings: {
-  //         slidesToShow: 1,
-  //         slidesToScroll: 1,
-  //         infinite: true,
-  //         dots: true,
-  //         arrows: false,
-  //         adaptiveHeight: true
-  //       }
-  //     }
-  //   ]
-  // }));
-
   var $chartSld = $('.js-chart-slider');
 
   $chartSld.slick($.extend({}, defaultOptions, {
@@ -9484,6 +9435,7 @@ var _vintagePopup2 = _interopRequireDefault(_vintagePopup);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function initPopups() {
+  // for system popup
   _helpers.$window.on('load', function () {
     setTimeout(function () {
       _helpers.$body.removeAttr('style');
@@ -9499,6 +9451,8 @@ function initPopups() {
     closeOnResize: true,
     lockScreen: false,
     afterClose: function afterClose(popup) {
+
+      _helpers.$header.removeClass('is-overlapped');
       $systemItem.each(function () {
         $(this).removeClass('is-visible');
       });
@@ -9509,12 +9463,34 @@ function initPopups() {
     _helpers.$scrolledElements.stop().animate({ scrollTop: 330 }, 500, 'swing');
 
     setTimeout(function () {
+
       $systemItem.each(function () {
         $(this).addClass('is-visible');
       });
-
+      _helpers.$header.addClass('is-overlapped');
       $popupInstance.open();
     }, 500);
+  });
+
+  // init all pop-ups, but in this case - login pop-up
+  var $popup = $('[data-popup-target]');
+
+  $popup.popup();
+
+  var $regBtn = $('.entry__nav-btn').eq(1);
+
+  $regBtn.on('mouseenter', function () {
+    $(this).siblings().removeClass('is-active');
+    $(this).addClass('is-active');
+  });
+  $regBtn.on('mouseleave', function () {
+    $(this).siblings().addClass('is-active');
+    $(this).removeClass('is-active');
+  });
+
+  $regBtn.on('click', function () {
+    $(this).removeClass('is-active');
+    $(this).siblings().addClass('is-active');
   });
 }
 
