@@ -384,7 +384,7 @@ var _initCharts = __webpack_require__(14);
 
 var _initPopups = __webpack_require__(17);
 
-var _showTooltip = __webpack_require__(20);
+var _showTooltip = __webpack_require__(19);
 
 var _showTooltip2 = _interopRequireDefault(_showTooltip);
 
@@ -9732,8 +9732,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;!function(){function t(p,i){return void 0===th
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):window.Popup=t,r($)}();
 
 /***/ }),
-/* 19 */,
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
